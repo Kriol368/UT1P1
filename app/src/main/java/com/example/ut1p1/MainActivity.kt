@@ -78,7 +78,7 @@ fun Orientacion_Retrato(name: String, modifier: Modifier = Modifier) {
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
         )
-        Spacer(modifier = modifier.size(size = 1.dp))
+        Spacer(modifier = modifier.size(size = 10.dp))
 
         val buttonTexts = listOf("Play", "New Player", "Preferences", "About")
         buttonTexts.forEachIndexed { index, text ->
@@ -168,7 +168,7 @@ fun Orientacion_Panorama(name: String, modifier: Modifier = Modifier) {
 fun GreetingPreview() {
     UT1P1Theme {
         Portada(
-            modifier = TODO()
+            modifier = Modifier
         )
     }
 }
