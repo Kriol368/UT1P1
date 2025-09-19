@@ -60,20 +60,60 @@ fun Orientacion_Retrato(navController: NavHostController) {
         )
         Spacer(modifier = Modifier.size(size = 10.dp))
 
-        val buttonTexts = listOf("Play", "New Player", "Preferences", "About")
-        buttonTexts.forEachIndexed { index, text ->
-            Button(
-                onClick = { navController.navigate("NewPlayer") },
-                modifier = Modifier
-                    .padding(vertical = 2.dp)
-                    .width(200.dp)
-                    .clip(shape = RoundedCornerShape(percent = 80)),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF379665)
-                ),
-            ) {
-                Text(text = text)
-            }
+        // Play Button
+        Button(
+            onClick = { navController.navigate("Play") },
+            modifier = Modifier
+                .padding(vertical = 2.dp)
+                .width(200.dp)
+                .clip(shape = RoundedCornerShape(percent = 80)),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF379665)
+            ),
+        ) {
+            Text(text = "Play")
+        }
+
+        // New Player Button
+        Button(
+            onClick = { navController.navigate("NewPlayer") },
+            modifier = Modifier
+                .padding(vertical = 2.dp)
+                .width(200.dp)
+                .clip(shape = RoundedCornerShape(percent = 80)),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF379665)
+            ),
+        ) {
+            Text(text = "New Player")
+        }
+
+        // Preferences Button
+        Button(
+            onClick = { navController.navigate("Preferences") },
+            modifier = Modifier
+                .padding(vertical = 2.dp)
+                .width(200.dp)
+                .clip(shape = RoundedCornerShape(percent = 80)),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF379665)
+            ),
+        ) {
+            Text(text = "Preferences")
+        }
+
+        // About Button
+        Button(
+            onClick = { navController.navigate("About") },
+            modifier = Modifier
+                .padding(vertical = 2.dp)
+                .width(200.dp)
+                .clip(shape = RoundedCornerShape(percent = 80)),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF379665)
+            ),
+        ) {
+            Text(text = "About")
         }
 
         Spacer(modifier = Modifier.weight(1f))
@@ -99,24 +139,34 @@ fun Orientacion_Panorama(navController: NavHostController) {
         )
         Spacer(modifier = Modifier.size(size = 1.dp))
 
-        val buttonTexts = listOf("Play", "New Player", "Preferences", "About")
-
         Row(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier.padding(vertical = 2.dp)
         ) {
-            buttonTexts.take(2).forEach { text ->
-                Button(
-                    onClick = { navController.navigate("NewPlayer") },
-                    modifier = Modifier
-                        .width(200.dp)
-                        .clip(shape = RoundedCornerShape(percent = 80)),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF379665)
-                    ),
-                ) {
-                    Text(text = text)
-                }
+            // Play Button
+            Button(
+                onClick = { navController.navigate("Play") },
+                modifier = Modifier
+                    .width(200.dp)
+                    .clip(shape = RoundedCornerShape(percent = 80)),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF379665)
+                ),
+            ) {
+                Text(text = "Play")
+            }
+
+            // New Player Button
+            Button(
+                onClick = { navController.navigate("NewPlayer") },
+                modifier = Modifier
+                    .width(200.dp)
+                    .clip(shape = RoundedCornerShape(percent = 80)),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF379665)
+                ),
+            ) {
+                Text(text = "New Player")
             }
         }
 
@@ -124,18 +174,30 @@ fun Orientacion_Panorama(navController: NavHostController) {
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier.padding(vertical = 2.dp)
         ) {
-            buttonTexts.drop(2).forEach { text ->
-                Button(
-                    onClick = {},
-                    modifier = Modifier
-                        .width(200.dp)
-                        .clip(shape = RoundedCornerShape(percent = 80)),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF379665)
-                    ),
-                ) {
-                    Text(text = text)
-                }
+            // Preferences Button
+            Button(
+                onClick = { navController.navigate("Preferences") },
+                modifier = Modifier
+                    .width(200.dp)
+                    .clip(shape = RoundedCornerShape(percent = 80)),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF379665)
+                ),
+            ) {
+                Text(text = "Preferences")
+            }
+
+            // About Button
+            Button(
+                onClick = { navController.navigate("About") },
+                modifier = Modifier
+                    .width(200.dp)
+                    .clip(shape = RoundedCornerShape(percent = 80)),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF379665)
+                ),
+            ) {
+                Text(text = "About")
             }
         }
 
