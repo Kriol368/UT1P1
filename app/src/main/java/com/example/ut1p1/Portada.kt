@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.ut1p1.ui.theme.FontTittle
 
 @Composable
 fun Portada(navController: NavHostController) {
@@ -54,8 +55,7 @@ fun Orientacion_Retrato(navController: NavHostController) {
         Text(
             text = stringResource(id = R.string.header),
             fontSize = 55.sp,
-            fontFamily = FontFamily.Cursive,
-            fontWeight = FontWeight.Bold,
+            fontFamily = FontTittle,
             textAlign = TextAlign.Center,
         )
         Spacer(modifier = Modifier.size(size = 10.dp))
@@ -133,8 +133,7 @@ fun Orientacion_Panorama(navController: NavHostController) {
         Text(
             text = stringResource(id = R.string.header),
             fontSize = 55.sp,
-            fontFamily = FontFamily.Cursive,
-            fontWeight = FontWeight.Bold,
+            fontFamily = FontTittle,
             textAlign = TextAlign.Center,
         )
         Spacer(modifier = Modifier.size(size = 1.dp))
