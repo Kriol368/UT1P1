@@ -15,6 +15,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,11 +31,11 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun NewPlayer() {
 
-    var nombre by remember { mutableStateOf("Nombre") }
-    var apellidos by remember { mutableStateOf("Apellidos") }
-    var nickname by remember { mutableStateOf("Nickname") }
-    var telefono by remember { mutableStateOf("Teléfono") }
-    var email by remember { mutableStateOf("Email") }
+    var nombre by remember { mutableStateOf("") }
+    var apellidos by remember { mutableStateOf("") }
+    var nickname by remember { mutableStateOf("") }
+    var telefono by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -61,8 +62,12 @@ fun NewPlayer() {
                 label = { Text("Name") },
                 modifier = Modifier
                     .width(275.dp)
-                    .padding(bottom = 20.dp)
-                    .clip(shape = RoundedCornerShape(percent = 80))
+                    .padding(bottom = 30.dp)
+                    .clip(shape = RoundedCornerShape(percent = 80)),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color(0xFF8DD5A8),
+                    unfocusedContainerColor = Color(0xFF8DD5A8),
+                )
             )
         }
 
@@ -72,9 +77,13 @@ fun NewPlayer() {
             label = { Text("Apellidos") },
             modifier = Modifier
                 .width(275.dp)
-                .padding(bottom = 20.dp)
+                .padding(bottom = 30.dp)
                 .align(Alignment.End)
-                .clip(shape = RoundedCornerShape(percent = 80))
+                .clip(shape = RoundedCornerShape(percent = 80)),
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = Color(0xFF8DD5A8),
+                unfocusedContainerColor = Color(0xFF8DD5A8),
+            )
         )
 
         TextField(
@@ -83,14 +92,18 @@ fun NewPlayer() {
             label = { Text("Nickname") },
             modifier = Modifier
                 .width(275.dp)
-                .padding(bottom = 20.dp)
+                .padding(bottom = 30.dp)
                 .align(Alignment.End)
-                .clip(shape = RoundedCornerShape(percent = 80))
+                .clip(shape = RoundedCornerShape(percent = 80)),
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = Color(0xFF8DD5A8),
+                unfocusedContainerColor = Color(0xFF8DD5A8),
+            )
         )
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End,
+            horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
@@ -102,7 +115,9 @@ fun NewPlayer() {
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFFF9AA33)
                 ),
-                modifier = Modifier.padding(bottom = 20.dp)
+                modifier = Modifier
+                    .padding(bottom = 40.dp)
+                    .padding(horizontal = 8.dp)
             ) {
                 Text(
                     text = "Change",
@@ -129,8 +144,13 @@ fun NewPlayer() {
                 label = { Text("Teléfono") },
                 modifier = Modifier
                     .width(275.dp)
-                    .padding(bottom = 20.dp)
-                    .clip(shape = RoundedCornerShape(percent = 80))
+                    .padding(bottom = 30.dp)
+                    .padding(top = 20.dp)
+                    .clip(shape = RoundedCornerShape(percent = 80)),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color(0xFF8DD5A8),
+                    unfocusedContainerColor = Color(0xFF8DD5A8),
+                )
             )
         }
 
@@ -152,9 +172,14 @@ fun NewPlayer() {
                 label = { Text("Email") },
                 modifier = Modifier
                     .width(275.dp)
-                    .padding(bottom = 20.dp)
-                    .clip(shape = RoundedCornerShape(percent = 80))
+                    .padding(bottom = 30.dp)
+                    .clip(shape = RoundedCornerShape(percent = 80)),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color(0xFF8DD5A8),
+                    unfocusedContainerColor = Color(0xFF8DD5A8),
+                )
             )
         }
     }
 }
+
