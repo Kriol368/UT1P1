@@ -36,6 +36,8 @@ fun NewPlayer() {
     var nickname by remember { mutableStateOf("") }
     var telefono by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
+    var nombreError by remember { mutableStateOf("") }
+    var nicknameError by remember { mutableStateOf("") }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -56,19 +58,26 @@ fun NewPlayer() {
                     .padding(end = 8.dp)
                     .size(56.dp)
             )
-            TextField(
-                value = nombre,
-                onValueChange = { nombre = it },
-                label = { Text("Name") },
-                modifier = Modifier
-                    .width(275.dp)
-                    .padding(bottom = 30.dp)
-                    .clip(shape = RoundedCornerShape(percent = 80)),
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color(0xFF8DD5A8),
-                    unfocusedContainerColor = Color(0xFF8DD5A8),
+            Column {
+                TextField(
+                    value = nombre,
+                    onValueChange = { nombre = it },
+                    label = { Text("Name") },
+                    modifier = Modifier
+                        .width(275.dp)
+                        .padding(bottom = 8.dp)
+                        .clip(shape = RoundedCornerShape(percent = 80)),
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = Color(0xFF8DD5A8),
+                        unfocusedContainerColor = Color(0xFF8DD5A8),
+                    )
                 )
-            )
+                Text(
+                    text = if (nombreError.isNotEmpty()) nombreError else "*Obligatorio",
+                    color = if (nombreError.isNotEmpty()) Color.Red else Color.Gray,
+                    modifier = Modifier.padding(bottom = 22.dp)
+                )
+            }
         }
 
         TextField(
@@ -86,20 +95,30 @@ fun NewPlayer() {
             )
         )
 
-        TextField(
-            value = nickname,
-            onValueChange = { nickname = it },
-            label = { Text("Nickname") },
+        Column(
             modifier = Modifier
                 .width(275.dp)
-                .padding(bottom = 30.dp)
                 .align(Alignment.End)
-                .clip(shape = RoundedCornerShape(percent = 80)),
-            colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color(0xFF8DD5A8),
-                unfocusedContainerColor = Color(0xFF8DD5A8),
+        ) {
+            TextField(
+                value = nickname,
+                onValueChange = { nickname = it },
+                label = { Text("Nickname") },
+                modifier = Modifier
+                    .width(275.dp)
+                    .padding(bottom = 8.dp)
+                    .clip(shape = RoundedCornerShape(percent = 80)),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color(0xFF8DD5A8),
+                    unfocusedContainerColor = Color(0xFF8DD5A8),
+                )
             )
-        )
+            Text(
+                text = if (nicknameError.isNotEmpty()) nicknameError else "*Obligatorio",
+                color = if (nicknameError.isNotEmpty()) Color.Red else Color.Gray,
+                modifier = Modifier.padding(bottom = 22.dp)
+            )
+        }
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -180,6 +199,22 @@ fun NewPlayer() {
                 )
             )
         }
+
+        // Botón de verificación
+        Button(
+            onClick = {
+                nombreError = if (nombre.isEmpty()) "El campo Nombre es obligatorio" else ""
+                nicknameError = if (nickname.isEmpty()) "El campo Nickname es obligatorio" else ""
+            },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFFF9AA33)
+            ),
+            modifier = Modifier.padding(top = 16.dp)
+        ) {
+            Text(
+                text = "Verificar Campos",
+                color = Color.Black
+            )
+        }
     }
 }
-
