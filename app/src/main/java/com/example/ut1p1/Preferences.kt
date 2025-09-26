@@ -19,6 +19,7 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -32,7 +33,7 @@ import androidx.compose.ui.unit.dp
 fun Preferences() {
     val context = LocalContext.current
     var seleccion by remember { mutableStateOf("") }
-    var puntuacion by remember { mutableStateOf(1f) }
+    var puntuacion by remember { mutableFloatStateOf(1f) }
 
     val games = listOf(
         "Angry Birds",
