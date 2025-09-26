@@ -44,17 +44,24 @@ fun Preferences() {
 
     Box() {
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color(0xFFB9F4C9))
                 .padding(16.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            Text("Elige una opción:")
+            Text(
+                "Elige una opción:",
+                modifier = Modifier
+                    .padding(bottom = 16.dp)
+                    .align(Alignment.CenterHorizontally)
+            )
 
             games.forEach { game ->
-                Row {
+                Row(
+                    modifier = Modifier.padding(start = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     RadioButton(
                         selected = seleccion == game,
                         onClick = { seleccion = game }
