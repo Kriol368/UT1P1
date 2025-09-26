@@ -17,6 +17,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,9 +30,19 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun Preferences() {
     var context = LocalContext.current
+    var seleccion by remember { mutableStateOf("") }
+
+    val games = listOf(
+        "Angry Birds",
+        "Dragon Fly",
+        "Hill Climbing Racing",
+        "Pocket Soccer",
+        "Radiant Defense",
+        "Ninja Jump",
+        "Air Controll"
+    )
+
     Box() {
-
-
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -36,44 +50,28 @@ fun Preferences() {
                 .background(Color(0xFFB9F4C9))
                 .padding(16.dp)
                 .verticalScroll(rememberScrollState())
-
         ) {
             Text("Elige una opción:")
-            /*
-        Row {
-            RadioButton(false, TODO())
-            Text("Angry Birds")
-        }
-        Row {
-            RadioButton(false, TODO())
-            Text("Dragon Fly")
-        }
-        Row {
-            RadioButton(false, TODO())
-            Text("Hill Climbing Racing")
-        }
-        Row {
-            RadioButton(false, TODO())
-            Text("Pocket Soccer")
-        }
-        Row {
-            RadioButton(false, TODO())
-            Text("Radiant Defense")
-        }
-        Row {
-            RadioButton(false, TODO())
-            Text("Ninja Jump")
-        }
-        Row {
-            RadioButton(false, TODO())
-            Text("Air Controll")
-        }
-        */
 
+            games.forEach { game ->
+                Row {
+                    RadioButton(
+                        selected = seleccion == game,
+                        onClick = { seleccion = game }
+                    )
+                    Text(game, modifier = Modifier.padding(start = 8.dp))
+                }
+            }
         }
+
         FloatingActionButton(
             onClick = {
-                Toast.makeText(context, "mensaje ", Toast.LENGTH_LONG).show()
+                val message = if (seleccion.isNotEmpty()) {
+                    "Has seleccionado $seleccion"
+                } else {
+                    "No has pulsado ninguna opción"
+                }
+                Toast.makeText(context, message, Toast.LENGTH_LONG).show()
             },
             shape = CircleShape,
             modifier = Modifier
