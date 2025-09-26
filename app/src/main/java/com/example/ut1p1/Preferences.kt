@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -29,8 +30,9 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun Preferences() {
-    var context = LocalContext.current
+    val context = LocalContext.current
     var seleccion by remember { mutableStateOf("") }
+    var puntuacion by remember { mutableStateOf(1f) }
 
     val games = listOf(
         "Angry Birds",
@@ -42,7 +44,7 @@ fun Preferences() {
         "Air Controll"
     )
 
-    Box() {
+    Box {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -69,12 +71,21 @@ fun Preferences() {
                     Text(game, modifier = Modifier.padding(start = 8.dp))
                 }
             }
+
+            Slider(
+                value = puntuacion,
+                onValueChange = { puntuacion = it },
+                valueRange = 1f..10f,
+                steps = 8,
+                modifier = Modifier
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+            )
         }
 
         FloatingActionButton(
             onClick = {
                 val message = if (seleccion.isNotEmpty()) {
-                    "Has seleccionado $seleccion"
+                    "Has seleccionado $seleccion con una puntuacion de ${puntuacion.toInt()}"
                 } else {
                     "No has pulsado ninguna opción"
                 }
