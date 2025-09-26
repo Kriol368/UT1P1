@@ -16,6 +16,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -78,6 +79,10 @@ fun Preferences() {
                 onValueChange = { puntuacion = it },
                 valueRange = 1f..10f,
                 steps = 8,
+                colors = SliderDefaults.colors(
+                    thumbColor = Color(0xFF379665),
+                    activeTrackColor = Color(0xFF379665),
+                ),
                 modifier = Modifier
                     .padding(horizontal = 16.dp, vertical = 8.dp)
             )
