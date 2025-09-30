@@ -54,7 +54,13 @@ fun Preferences() {
         "Air Controll"
     )
 
-    val plataformas = listOf("PS4", "XBOX", "3DS", "WII", "WIIU")
+    val plataformas = listOf(
+        "PS4",
+        "XBOX",
+        "3DS",
+        "WII",
+        "WIIU"
+    )
 
     Box {
         Column(
@@ -115,7 +121,7 @@ fun Preferences() {
             Text(
                 "Plataformas:",
                 modifier = Modifier
-                    .padding(bottom = 16.dp)
+                    .padding(bottom = 2.dp)
             )
 
             Row {
