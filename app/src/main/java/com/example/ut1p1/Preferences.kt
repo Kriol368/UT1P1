@@ -15,6 +15,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Star
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.RadioButton
@@ -40,6 +42,7 @@ fun Preferences() {
     var seleccion by remember { mutableStateOf("") }
     var puntuacion by remember { mutableFloatStateOf(1f) }
     var estrellas by remember { mutableFloatStateOf(1f) }
+    var plataformaSeleccionada by remember { mutableStateOf("") }
 
     val games = listOf(
         "Angry Birds",
@@ -50,6 +53,8 @@ fun Preferences() {
         "Ninja Jump",
         "Air Controll"
     )
+
+    val plataformas = listOf("PS4", "XBOX", "3DS", "WII", "WIIU")
 
     Box {
         Column(
@@ -114,9 +119,45 @@ fun Preferences() {
             )
 
             Row {
-                //Filter chips here
+                plataformas.forEach { plataforma ->
+                    FilterChip(
+                        selected = plataformaSeleccionada == plataforma,
+                        onClick = {
+                            plataformaSeleccionada = if (plataformaSeleccionada == plataforma) {
+                                ""
+                            } else {
+                                plataforma
+                            }
+                            if (plataformaSeleccionada == plataforma) {
+                                Toast.makeText(
+                                    context,
+                                    "Has seleccionado $plataforma",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        },
+                        label = {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                if (plataformaSeleccionada == plataforma) {
+                                    Icon(
+                                        imageVector = Icons.Filled.Done,
+                                        contentDescription = "Selected",
+                                        modifier = Modifier.padding(end = 4.dp)
+                                    )
+                                }
+                                Text(plataforma)
+                            }
+                        },
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = Color(0xFFE6DEF6),
+                            selectedLabelColor = Color.Black,
+                            containerColor = Color(0xFFABEABE),
+                            labelColor = Color.Black
+                        ),
+                        modifier = Modifier.padding(end = 6.dp)
+                    )
+                }
             }
-
         }
 
         Column(
