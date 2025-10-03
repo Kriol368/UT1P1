@@ -37,6 +37,9 @@ class MainActivity : ComponentActivity() {
                         composable("Preferences"){
                             Preferences()
                         }
+                        composable("Games"){
+                            Games()
+                        }
                     }
                 }
             }

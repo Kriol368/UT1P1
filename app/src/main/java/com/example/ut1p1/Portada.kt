@@ -62,7 +62,7 @@ fun Orientacion_Retrato(navController: NavHostController) {
 
         // Play Button
         Button(
-            onClick = { navController.navigate("Play") },
+            onClick = { navController.navigate("Games") },
             modifier = Modifier
                 .padding(vertical = 2.dp)
                 .width(200.dp)
