@@ -8,10 +8,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -25,21 +27,31 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
-
 @Composable
 fun Games() {
     val context = LocalContext.current
 
-    val games = listOf(
-        "Angry  Birds" to remember { mutableStateOf(false) },
-        "Dragon Fly" to remember { mutableStateOf(false) },
-        "Hill Climbing Racing" to remember { mutableStateOf(false) },
-        "Radiant Defense" to remember { mutableStateOf(false) },
-        "Pocket Soccer" to remember { mutableStateOf(false) },
-        "Ninja Jump" to remember { mutableStateOf(false) },
-        "Air Control" to remember { mutableStateOf(false) },
+    val gameNames = listOf(
+        "Angry Birds",
+        "Dragon Fly",
+        "Hill Climbing Racing",
+        "Radiant Defense",
+        "Pocket Soccer",
+        "Ninja Jump",
+        "Air Control"
     )
 
+    val gameImages = listOf(
+        R.drawable.games_angrybirds,
+        R.drawable.games_dragonfly,
+        R.drawable.games_hillclimbingracing,
+        R.drawable.games_radiantdefense,
+        R.drawable.games_pocketsoccer,
+        R.drawable.games_ninjump,
+        R.drawable.games_aircontrol
+    )
+
+    val gameStates = gameNames.map { remember { mutableStateOf(false) } }
 
     Box(
         modifier = Modifier
@@ -49,21 +61,25 @@ fun Games() {
         Column(
             modifier = Modifier
                 .padding(16.dp)
-
         ) {
-            games.forEach { (gameName, isChecked) ->
+            gameNames.forEachIndexed { index, gameName ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.padding(vertical = 8.dp)
                 ) {
                     Image(
-                        painter = painterResource(id = android.R.drawable.ic_menu_gallery),
-                        contentDescription = "Game icon",
-                        modifier = Modifier.padding(end = 8.dp)
+                        painter = painterResource(id = gameImages[index]),
+                        contentDescription = "$gameName icon",
+                        modifier = Modifier
+                            .size(64.dp)
+                            .padding(end = 8.dp)
                     )
                     Checkbox(
-                        checked = isChecked.value,
-                        onCheckedChange = { isChecked.value = it },
+                        checked = gameStates[index].value,
+                        onCheckedChange = { gameStates[index].value = it },
+                        colors = CheckboxDefaults.colors(
+                            checkedColor = Color(0xFF379665)
+                        )
                     )
                     Text(
                         text = gameName,
@@ -75,12 +91,12 @@ fun Games() {
 
         FloatingActionButton(
             onClick = {
-                val selectedGames = games
-                    .filter { it.second.value }
-                    .map { it.first }
+                val selectedGames = gameNames
+                        .filterIndexed { index, _ -> gameStates[index].value } //_ Sirve para ignorar el parametro
+                    .joinToString(", ")
 
                 val message = if (selectedGames.isNotEmpty()) {
-                    "Has seleccionado ${selectedGames.joinToString(", ")}"
+                    "Has seleccionado $selectedGames"
                 } else {
                     "No has seleccionado ningún juego"
                 }
@@ -92,7 +108,6 @@ fun Games() {
                 .padding(16.dp),
             shape = CircleShape,
             containerColor = Color(0xFFF9AA33)
-
         ) {
             Icon(Icons.Filled.Done, "Floating action button.")
         }
