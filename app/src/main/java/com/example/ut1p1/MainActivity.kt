@@ -40,6 +40,9 @@ class MainActivity : ComponentActivity() {
                         composable("Games"){
                             Games()
                         }
+                        composable("SplashScreen"){
+                            SplashScreen(navController)
+                        }
                     }
                 }
             }
