@@ -2,7 +2,9 @@ package com.example.ut1p1
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +17,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -40,6 +44,8 @@ fun NewPlayer() {
     var email by remember { mutableStateOf("") }
     var nombreError by remember { mutableStateOf("") }
     var nicknameError by remember { mutableStateOf("") }
+    var expanded by remember { mutableStateOf(false) }
+    val emailOptions = listOf("player1@gmail.com", "player2@gmail.com", "player3@gmail.com")
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -76,7 +82,7 @@ fun NewPlayer() {
                     )
                 )
                 Text(
-                    text = if (nombreError.isNotEmpty()) nombreError else "*Obligatorio",
+                    text = nombreError.ifEmpty { "*Obligatorio" },
                     color = if (nombreError.isNotEmpty()) Color.Red else Color.Gray,
                     modifier = Modifier.padding(bottom = 22.dp)
                 )
@@ -117,7 +123,7 @@ fun NewPlayer() {
                 )
             )
             Text(
-                text = if (nicknameError.isNotEmpty()) nicknameError else "*Obligatorio",
+                text = nicknameError.ifEmpty { "*Obligatorio" },
                 color = if (nicknameError.isNotEmpty()) Color.Red else Color.Gray,
                 modifier = Modifier.padding(bottom = 22.dp)
             )
@@ -176,6 +182,7 @@ fun NewPlayer() {
             )
         }
 
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.End,
@@ -188,20 +195,40 @@ fun NewPlayer() {
                     .padding(end = 8.dp)
                     .size(56.dp)
             )
-            TextField(
-                value = email,
-                onValueChange = { email = it },
-                label = { Text("Email") },
-                modifier = Modifier
-                    .width(275.dp)
-                    .padding(bottom = 30.dp)
-                    .clip(shape = RoundedCornerShape(percent = 80)),
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color(0xFF8DD5A8),
-                    unfocusedContainerColor = Color(0xFF8DD5A8),
+            Box {
+                TextField(
+                    value = email,
+                    onValueChange = { email = it },
+                    label = { Text("Email") },
+                    modifier = Modifier
+                        .width(275.dp)
+                        .padding(bottom = 30.dp)
+                        .clip(shape = RoundedCornerShape(percent = 80))
+                        .clickable { expanded = true },
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = Color(0xFF8DD5A8),
+                        unfocusedContainerColor = Color(0xFF8DD5A8),
+                    ),
+                    enabled = false
                 )
-            )
+                DropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false },
+                     modifier = Modifier.width(275.dp)
+                ) {
+                    emailOptions.forEach { option ->
+                        DropdownMenuItem(
+                            text = { Text(option) },
+                            onClick = {
+                                email = option
+                                expanded = false
+                            }
+                        )
+                    }
+                }
+            }
         }
+
 
         // Botón de verificación
         Button(
