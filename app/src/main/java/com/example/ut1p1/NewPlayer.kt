@@ -208,13 +208,14 @@ fun NewPlayer() {
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = Color(0xFF8DD5A8),
                         unfocusedContainerColor = Color(0xFF8DD5A8),
+                        disabledContainerColor = Color(0xFF8DD5A8)
                     ),
                     enabled = false
                 )
                 DropdownMenu(
                     expanded = expanded,
                     onDismissRequest = { expanded = false },
-                     modifier = Modifier.width(275.dp)
+                    modifier = Modifier.width(275.dp)
                 ) {
                     emailOptions.forEach { option ->
                         DropdownMenuItem(
