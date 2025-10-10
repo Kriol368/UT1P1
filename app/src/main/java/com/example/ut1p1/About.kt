@@ -16,13 +16,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -84,29 +87,32 @@ fun UserItem(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onItemClick)
-            .padding(16.dp),
+            .padding(vertical = 20.dp, horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
             painter = painterResource(id = user.imageRes),
             contentDescription = "Imagen de ${user.name}",
+            contentScale = ContentScale.Crop,
             modifier = Modifier
-                .size(60.dp)
+                .size(80.dp)
+                .clip(CircleShape)
                 .background(
                     color = MaterialTheme.colorScheme.primaryContainer,
-                    shape = MaterialTheme.shapes.medium
+                    shape = CircleShape
                 )
-                .padding(8.dp)
         )
 
-        Spacer(modifier = Modifier.width(16.dp))
+        Spacer(modifier = Modifier.width(90.dp))
 
-        Column {
+        Column(
+            modifier = Modifier.weight(1f)
+        ) {
             Text(
                 text = user.name,
                 style = MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp
+                    fontSize = 16.sp
                 ),
                 color = MaterialTheme.colorScheme.onBackground
             )
@@ -114,8 +120,11 @@ fun UserItem(
             Spacer(modifier = Modifier.height(4.dp))
 
             Text(
-                text = "${user.points} puntos",
-                style = MaterialTheme.typography.bodyMedium,
+                text = "Puntos: ${user.points}",
+                style = MaterialTheme.typography.titleMedium.copy(
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 16.sp
+                ),
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }

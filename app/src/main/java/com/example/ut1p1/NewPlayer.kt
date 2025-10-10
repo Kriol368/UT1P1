@@ -231,7 +231,6 @@ fun NewPlayer() {
         }
 
 
-        // Botón de verificación
         Button(
             onClick = {
                 nombreError = if (nombre.isEmpty()) "El campo Nombre es obligatorio" else ""

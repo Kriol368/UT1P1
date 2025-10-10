@@ -104,7 +104,7 @@ fun Orientacion_Retrato(navController: NavHostController) {
 
         // About Button
         Button(
-            onClick = { navController.navigate("") },
+            onClick = { navController.navigate("About") },
             modifier = Modifier
                 .padding(vertical = 2.dp)
                 .width(200.dp)
